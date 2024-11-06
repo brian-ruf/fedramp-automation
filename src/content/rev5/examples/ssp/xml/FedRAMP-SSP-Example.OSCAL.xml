@@ -28,20 +28,12 @@
          </revision>
       </revisions>
       <prop name="marking" value="Controlled Unclassified Information"/>
-      <!-- New rev 5 prop -->
-      <prop ns="https://fedramp.gov/ns/oscal" name="resolution-resource" value="00000000-0000-4000-8001-c00100000001"/>
       <!-- The following role definitions are required by FedRAMP -->
       <!-- Do not change the ID's or titles. -->
       <role id="fedramp-pmo">
          <title>FedRAMP Program Management Office</title>
          <description>
             <p>The FedRAMP PMO resides within GSA and supports agencies and cloud service providers through the FedRAMP authorization process and maintains a secure repository of FedRAMP authorizations to enable reuse of security packages.</p>
-         </description>
-      </role>
-      <role id="fedramp-jab">
-         <title>FedRAMP Program Management Office</title>
-         <description>
-            <p>Members of the JAB include the chief information officers (CIOs) from the Department of Defense, Department of Homeland Security, and General Services Administration. The JAB serves as the primary governance and decision-making body for FedRAMP.</p>
          </description>
       </role>
       <role id="prepared-by">
