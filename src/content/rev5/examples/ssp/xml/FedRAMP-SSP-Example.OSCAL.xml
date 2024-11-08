@@ -2,7 +2,7 @@
 <?xml-model href="https://raw.githubusercontent.com/usnistgov/OSCAL/v1.0.4/xml/schema/oscal_complete_schema.xsd" schematypens="http://www.w3.org/2001/XMLSchema" title="OSCAL complete schema"?>
 <system-security-plan xmlns="http://csrc.nist.gov/ns/oscal/1.0" uuid="00000000-0000-4000-8001-c00000000000">
    <metadata>
-      <title>FedRAMP Sample System Security Plan (SSP)</title>
+      <title>FedRAMP [Baseline Name] System Security Plan (SSP)</title>
 		<published>2024-12-31T23:59:59Z</published>
 		<last-modified>2024-11-05T02:24:00Z</last-modified>
 		<version>fedramp3.0.0-oscal1.1.4</version>
@@ -529,7 +529,7 @@
       <prop name="identity-assurance-level" value="2"/>
       <prop name="authenticator-assurance-level" value="2"/>
       <prop name="federation-assurance-level" value="2"/>
-      <prop ns="https://fedramp.gov/ns/oscal" name="fully-operational-date" value="yyyy-mm-ddThh:mmZ"/>
+      <prop ns="https://fedramp.gov/ns/oscal" name="fully-operational-date" value="2023-12031T00:00:00z"/>
       <!-- Rev5 update - new prop -->
       <!-- FedRAMP Authorization Path: fedramp-jab, fedramp-agency, or fedramp-li-saas -->
       <prop ns="https://fedramp.gov/ns/oscal" name="authorization-type" value="fedramp-agency"/>
