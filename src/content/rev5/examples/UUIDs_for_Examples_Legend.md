@@ -84,6 +84,7 @@ _Fields for other models to be added as we work with those models._
 - `0110`=Standard
 - `0120`=Validation
 - `0130`=Network
+- `0140`=Connection
 
 **Enumeration**
 - `0###`: A simple sequence number. (`001`, `002`, through `fff`)

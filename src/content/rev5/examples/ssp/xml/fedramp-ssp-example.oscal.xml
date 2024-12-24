@@ -609,7 +609,7 @@
       <!-- FedRAMP Authorization Path: fedramp-jab, fedramp-agency, or fedramp-li-saas -->
       <prop ns="http://fedramp.gov/ns/oscal" name="authorization-type" value="fedramp-agency"/>
       <!-- FIPS PUB 199 Level -->
-      <security-sensitivity-level>fips-199-moderate</security-sensitivity-level>
+      <security-sensitivity-level>fips-199-high</security-sensitivity-level>
       <system-information>
          <!-- Rev5 update - PIA/PTAs are no longer required by FedRAMP -->
          <!-- Table K.1 - Use the information-type element to provide details about all information types that are stored, processed, or transmitted by the system -->
@@ -1092,8 +1092,7 @@
                   or poam-item UUID (OSCAL POA&amp;M)</li>
                <li>a "provided-by" link with a URI fragment that points to the 
                   "system" component representing the leveraged system. (Example: <code>"#11111111-2222-4000-8000-009000100001"</code>)</li>
-               <li></li>
-               <li></li>
+
 
             </ul>
             <p>The "leveraged-authorization-uuid" property must NOT be present, as this is how
@@ -1237,9 +1236,15 @@
 
          <prop name="connection-security" value="ipsec" ns="http://fedramp.gov/ns/oscal" />
 
-         <link rel="attachment" href="#11111111-2222-4000-8000-001000000058"/>
-         <link rel="used-by"   href="#11111111-2222-4000-8000-009000000000" />
-         <link rel="used-by"   href="#11111111-2222-4000-8000-009000100002" />
+         <link rel="attachment" href="#11111111-2222-4000-8000-001000000058">
+            <text>ISA</text>
+         </link>
+         <link rel="used-by"   href="#11111111-2222-4000-8000-009000000000" >
+            <text>UUID of "this system" or a component within this system's boundary</text>
+         </link>
+         <link rel="used-by"   href="#11111111-2222-4000-8000-009000100002" >
+            <text>UUID of remote system</text>
+         </link>
 
          <link rel="poam-item" href="https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/examples/poam/xml/ifa_plan-of-action-and-milestones.xml" resource-fragment="11111111-3333-4000-8000-000000000001" />
          
@@ -1261,7 +1266,7 @@
             <party-uuid>11111111-2222-4000-8000-004000000011</party-uuid>
             <party-uuid>11111111-2222-4000-8000-004000000012</party-uuid>
          </responsible-role>
-         
+
 
          <remarks>
             <!-- TODO: Validate this description -->
@@ -1489,6 +1494,7 @@
             <p>Describe the service and what it is used for.</p>
          </description>
          <prop name="implementation-point" value="internal"/>
+         <prop name="public" value="yes"></prop>
          
          <prop name="communicates-externally" value="yes" ns="http://fedramp.gov/ns/oscal"/>
          <prop name="information-type" class="incoming-outgoing" value="C.3.5.1" ns="http://fedramp.gov/ns/oscal" />
@@ -1580,13 +1586,13 @@
                resulting in communication that crosses the boundary.</p>
          </description>
          <prop name="asset-type" value="cli"/>
-         <prop name="implementation-point" value="internal"/>
+         <prop name="implementation-point"                     value="internal"/>
 
-         <prop name="communicates-externally" value="yes" ns="http://fedramp.gov/ns/oscal" />
-         <prop name="information-type" class="incoming" value="C.3.5.1" ns="http://fedramp.gov/ns/oscal" />
-         <prop name="information-type" class="outgoing" value="C.3.5.8" ns="http://fedramp.gov/ns/oscal" />
-         <prop name="connection-security" value="ipsec" ns="http://fedramp.gov/ns/oscal" />
-         <prop name="authentication-method" value="yes" ns="http://fedramp.gov/ns/oscal" >
+         <prop name="communicates-externally"                  value="yes"     ns="http://fedramp.gov/ns/oscal" />
+         <prop name="information-type"        class="incoming" value="C.3.5.1" ns="http://fedramp.gov/ns/oscal" />
+         <prop name="information-type"        class="outgoing" value="C.3.5.8" ns="http://fedramp.gov/ns/oscal" />
+         <prop name="connection-security"                      value="ipsec"   ns="http://fedramp.gov/ns/oscal" />
+         <prop name="authentication-method"                    value="yes"     ns="http://fedramp.gov/ns/oscal" >
             <remarks>
                <p>If 'yes', describe the authentication method in the remarks.</p>
                <p>If 'no', explain why no authentication is used in the remarks.</p>
@@ -1726,6 +1732,7 @@
       <component uuid="11111111-2222-4000-8000-009000600001" type="policy">
          <title>Access Control and Identity Management Policy</title>
          <description>
+            <p>This is a corporate policy used for the system.</p>
             <p>The Access Control and Identity Management Policy governs how 
                user identities and access rights are managed.</p>
          </description>
@@ -1811,7 +1818,102 @@
          <link href="#11111111-2222-4000-8000-001000000024" rel="attachment"/>
          <status state="operational"/>
       </component>
+
+
+      <!-- ============= INTERNAL COMPONENTS - ENCRYPTED COMMUNICATION ============= -->
       
+      <component uuid="11111111-2222-4000-8000-009001400001" type="connection">
+         <title>Encrypted Communication</title>
+         <description><p>An encryptred communication between the web server and the database server</p></description>
+         <prop name="asset-type" value="cryptographic" />
+         <prop name="asset-type" value="cryptographic" />
+         <link rel="used-by" href="#11111111-2222-4000-8000-009000300100" />
+         <link rel="used-by" href="#11111111-2222-4000-8000-009000300200" />
+         <status state="operational"></status>
+      </component>      
+      
+      
+      
+      <component uuid="11111111-2222-4000-8000-009000300100" type="software">
+         <title>Database Sample</title>
+         <description>
+            <p>None</p>
+         </description>
+         <prop name="asset-type" value="database"/>
+         <prop ns="http://fedramp.gov/ns/oscal" name="scan-type" value="database"/>
+         <prop name="baseline-configuration-name" value="Baseline Config. Name"/>
+         <prop name="allows-authenticated-scan" value="yes"/>
+         <link href="#11111111-2222-4000-8000-009000500006" rel="used-by" />
+         <status state="operational"/>
+         <protocol name="postgresql">
+            <port-range start="5432" end="5432" transport="TCP" />
+            <port-range start="5432" end="5432" transport="UDP" />
+         </protocol>
+      </component>
+
+      <component uuid="11111111-2222-4000-8000-009001200001" type="validation">
+         <title>[SAMPLE]Cryptographic Module Name</title>
+         <description>
+            <p>Provide a description and any pertinent note regarding the use of this CM.</p>
+            <p>For data-at-rest modules, describe type of encryption implemented (e.g., full disk,
+               file, record-level, etc.)</p>
+            <p>Lastly, provide any supporting notes on FIPS status (e.g. historical) or lack of FIPS
+               compliance (e.g., Module in Process).</p>
+         </description>
+         <!-- Rev 5 new props for CMs -->
+         <prop name="asset-type" value="cryptographic-module"/>
+         <prop ns="http://fedramp.gov/ns/oscal" name="vendor-name" value="CM Vendor"/>
+         <prop ns="http://fedramp.gov/ns/oscal" name="cryptographic-module-usage"
+            value="data-at-rest"/>
+         <!-- Provide the validation type for this CM -->
+         <prop name="validation-type" value="fips-140-2"/>
+         <!-- Provide the certificate number (CMVP #) -->
+         <prop name="validation-reference" value="3928"/>
+         <link rel="proof-of-compliance"
+            href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/3928"/>
+         <status state="operational"/>
+         <responsible-role role-id="provider">
+            <party-uuid>44444444-2222-4000-8000-004000000001</party-uuid>
+         </responsible-role>
+      </component>
+
+
+
+      <component uuid="11111111-2222-4000-8000-009001200002" type="validation">
+         <title>[SAMPLE]Cryptographic Module Name</title>
+         <description>
+            <p>Provide a description and any pertinent note regarding the use of this CM.</p>
+            <p>For example, any supporting notes on FIPS status (e.g. historical) or lack of FIPS
+               compliance (e.g., Module in Process).</p>
+         </description>
+         <prop name="asset-type" value="cryptographic-module"/>
+         <prop name="cryptographic-module-usage" ns="http://fedramp.gov/ns/oscal" value="data-in-transit"/>
+         <prop name="validation-type" value="fips-140-3"/>
+         <prop name="validation-reference" value="3920"/>
+         <link rel="proof-of-compliance"
+            href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/3920"/>
+         <status state="operational"/>
+
+      </component>
+      
+      <component uuid="11111111-2222-4000-8000-009000300200" type="software">
+         <title>Appliance Sample</title>
+         <description>
+            <p>None</p>
+         </description>
+         <prop name="asset-type" value="appliance"/>
+         <prop ns="http://fedramp.gov/ns/oscal" name="scan-type" value="web"/>
+         <prop ns="http://fedramp.gov/ns/oscal" name="login-url"
+            value="https://admin.offering.com/login"/>
+         <prop name="baseline-configuration-name" value="Baseline Config. Name"/>
+         <prop name="allows-authenticated-scan" value="no" />
+         <status state="operational"/>
+      </component>
+
+
+
+
+
 
       <!-- ============= INTERNAL COMPONENTS ============= -->
       <component uuid="11111111-2222-4000-8000-009000500005" type="service">
@@ -1825,60 +1927,20 @@
       </component>
 
 
-      <!-- Section 10 / Appendix Q - Cryptographic Modules -->
-      <!-- NOTE: Must set type="cryptographic-module" -->
-      <!-- List all cryptographic modules for Data-at-Rest (DAT) - must referenced by using component(s), provide CMVP #, FIPS validation status, Vendor Name, Module Name, and brief usage description -->
-      <component uuid="11111111-2222-4000-8000-009001200001" type="validation">
-         <title>[SAMPLE]Cryptographic Module Name</title>
+      <component uuid="11111111-2222-4000-8000-009001200002" type="software">
+         <title>Container Image</title>
          <description>
-            <p>Provide a description and any pertinent note regarding the use of this CM.</p>
-            <p>For data-at-rest modules, describe type of encryption implemented (e.g., full disk,
-               file, record-level, etc.)</p>
-            <p>Lastly, provide any supporting notes on FIPS status (e.g. historical) or lack of FIPS
-               compliance (e.g., Module in Process).</p>
+            <p>This is a container image used to create container instances within the system.</p>
          </description>
-         <!-- Rev 5 new props for CMs -->
-         <prop ns="http://fedramp.gov/ns/oscal" name="asset-type" value="cryptographic-module"/>
-         <prop ns="http://fedramp.gov/ns/oscal" name="vendor-name" value="CM Vendor"/>
-         <prop ns="http://fedramp.gov/ns/oscal" name="cryptographic-module-usage"
-            value="data-at-rest"/>
-         <!-- Provide the validation type for this CM -->
-         <prop name="validation-type" value="fips-140-2"/>
-         <!-- Provide the certificate number (CMVP #) -->
-         <prop name="validation-reference" value="3928"/>
-         <link rel="validation-details"
-            href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/3928"/>
-         <status state="operational"/>
-         <responsible-role role-id="provider">
+         <prop name="asset-type" value="image"/>
+         <prop name="asset-id" value="image"/>
+         <prop name="checksum" value="a1b2c3" ns="http://fedramp.gov/ns/oscal"/>
+         <link href="#11111111-2222-4000-8000-001000000059" rel="attachment"/>
+         <status state="operational" />
+         <responsible-role role-id="administrator">
             <party-uuid>44444444-2222-4000-8000-004000000001</party-uuid>
          </responsible-role>
       </component>
-      <!-- List all cryptographic modules for Data-in-Transit (DIT) - must referenced by using component(s), provide CMVP #, FIPS validation status, Vendor Name, Module Name, and brief usage description -->
-      <component uuid="11111111-2222-4000-8000-009001200002" type="validation">
-         <title>[SAMPLE]Cryptographic Module Name</title>
-         <description>
-            <p>Provide a description and any pertinent note regarding the use of this CM.</p>
-            <p>For example, any supporting notes on FIPS status (e.g. historical) or lack of FIPS
-               compliance (e.g., Module in Process).</p>
-         </description>
-         <!-- Rev5 new props for CMs -->
-         <prop ns="http://fedramp.gov/ns/oscal" name="asset-type" value="cryptographic-module"/>
-         <prop ns="http://fedramp.gov/ns/oscal" name="cryptographic-module-usage"
-            value="data-in-transit"/>
-         <!-- Provide the validation type for this CM -->
-         <prop name="validation-type" value="fips-140-3"/>
-         <!-- Provide the certificate number (CMVP #) -->
-         <prop name="validation-reference" value="3920"/>
-         <link rel="validation-details"
-            href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/3920"/>
-         <status state="operational"/>
-         <responsible-role role-id="provider">
-            <party-uuid>44444444-2222-4000-8000-004000000001</party-uuid>
-         </responsible-role>
-      </component>
-
-
-
 
       <!-- Use Components to identify Security and Management Technologies (Table 8.1), -->
       <!-- including Operating Systems, IAM/Access Management, Endpoint/Antivirus (AV), -->
@@ -2051,7 +2113,6 @@
          <prop name="mac-address" value="00:00:00:00:00:00"/>
          <prop name="software-name" value="software-name"/>
          <prop name="asset-type" value="operating-system"/>
-         <!-- vendor-name, model, and patch-level are component level props -->
          <!-- <prop name="vendor-name" value="Vendor Name"/> -->
          <!-- <prop name="model" value="Model Number"/> -->
          <!-- <prop name="patch-level" value="Patch-Level"/> -->
@@ -2060,7 +2121,7 @@
          <prop name="vlan-id" value="VLAN Identifier"/>
          <prop name="network-id" value="Network Identifier"/>
          <prop ns="http://fedramp.gov/ns/oscal" name="scan-type" value="infrastructure"/>
-         <!-- <prop ns="http://fedramp.gov/ns/oscal" name="scan-type" value="database"/>-->
+         <prop ns="http://fedramp.gov/ns/oscal" name="scan-type" value="database"/>
          <prop name="allows-authenticated-scan" value="no">
             <remarks>
                <p>If no, explain why. If yes, omit remarks field.</p>
@@ -2406,20 +2467,6 @@
          </statement>
       </implemented-requirement>
       <implemented-requirement control-id="ac-2" uuid="11111111-2222-4000-8000-012000020000">
-         <prop ns="http://fedramp.gov/ns/oscal" name="planned-completion-date" value="2024-01-31Z"/>
-         <prop ns="http://fedramp.gov/ns/oscal" name="implementation-status" value="planned">
-            <remarks>
-               <p>Describe the plan to complete the implementation.</p>
-            </remarks>
-         </prop>
-         <!-- sample implementation-status below -->
-         <prop ns="http://fedramp.gov/ns/oscal" name="control-origination" value="sp-system"/>
-         <prop ns="http://fedramp.gov/ns/oscal" name="control-origination"
-            value="customer-configured">
-            <remarks>
-               <p>Describe any customer-configured requirements for satisfying this control.</p>
-            </remarks>
-         </prop>
          <set-parameter param-id="ac-2_prm_1">
             <value>[SAMPLE]privileged, non-privileged</value>
          </set-parameter>
@@ -2432,17 +2479,12 @@
          <set-parameter param-id="ac-2_prm_4">
             <value>at least annually</value>
          </set-parameter>
-         <responsible-role role-id="admin-unix">
-            <party-uuid>11111111-2222-4000-8000-004000000010</party-uuid>
-         </responsible-role>
-         <responsible-role role-id="information-system-security-officer">
-            <party-uuid>11111111-2222-4000-8000-004000000011</party-uuid>
-         </responsible-role>
 
          <statement statement-id="ac-2_smt.a" uuid="11111111-2222-4000-8000-012000020100">
             <by-component component-uuid="11111111-2222-4000-8000-009000000000"
                uuid="11111111-2222-4000-8000-012000020101">
                <description>
+                  <h1>Description for the "this-system" component.</h1>
                   <p>Describe how AC-2, part a is satisfied within this system.</p>
                   <p>This points to the "This System" component, and is used any time a more
                      specific component reference is not available.</p>
@@ -2450,8 +2492,8 @@
                <export>
                   <provided uuid="11111111-2222-4000-8000-015000000001">
                      <description>
-                        <p>Leveraged system's statement of capabilities which may be inherited by a
-                           leveraging systems to satisfy AC-2, part a.</p>
+                        <p>This system's statement of capabilities which may be inherited by a
+                           customer's leveraging systems toward satisfaction of AC-2, part a.</p>
                      </description>
                   </provided>
                   <responsibility uuid="11111111-2222-4000-8000-016000000001"
@@ -2466,6 +2508,10 @@
                         <party-uuid>11111111-2222-4000-8000-004000000001</party-uuid>
                      </responsible-role>
                   </responsibility>
+                  <remarks>
+                     <p>Any content for the customer responsibility matrix must be included within <code>export</code>.</p>
+                     <p><code>provided</code> is a statement about what </p>
+                  </remarks>
                </export>
             </by-component>
             <by-component component-uuid="11111111-2222-4000-8000-009000000014"
@@ -3632,5 +3678,11 @@
                and the value is "citation".</p>
          </remarks>
       </resource>
-   </back-matter>
+      <resource uuid="11111111-2222-4000-8000-001000000059">
+         <title>Server Security Technical Implementation Guide (STIG)</title>
+         <prop name="type" value="external-guidance" class="stig"/>
+         <prop name="published" value="2024-01-31T00:00:00Z" />
+         <prop name="version" value="2.1"/>
+         <rlink href="./attachments/server-stig.pdf" media-type="application/pdf" />
+      </resource>   </back-matter>
 </system-security-plan>
