@@ -1820,6 +1820,9 @@
       </component>
 
 
+      <!-- ============= INTERNAL COMPONENTS                           ============= -->
+      <!-- ============= INTERNAL COMPONENTS                           ============= -->
+
       <!-- ============= INTERNAL COMPONENTS - ENCRYPTED COMMUNICATION ============= -->
       
       <component uuid="11111111-2222-4000-8000-009001400001" type="connection">
@@ -1869,9 +1872,14 @@
                compliance (e.g., Module in Process).</p>
          </description>
          <prop name="asset-type" class="embedded" value="cryptographic-module" />
-         <prop name="vendor-name" value="CM Vendor" ns="http://fedramp.gov/ns/oscal" />
          <prop name="validation-type" value="fips-140-2"/>
          <prop name="validation-reference" value="3928"/>
+         <prop name="vendor-name" value="CM Vendor" ns="http://fedramp.gov/ns/oscal" />
+         <prop name="function" value="data-in-transit" ns="http://fedramp.gov/ns/oscal">
+            <remarks>
+               <p>Usage statement</p>
+            </remarks>
+         </prop>
          <link rel="proof-of-compliance"
             href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/3928"/>
          <status state="operational"/>
@@ -1893,7 +1901,6 @@
                provided in the property's remarks field.</p>
          </remarks>
       </component>
-
 
 
       <component uuid="11111111-2222-4000-8000-009001200002" type="validation">
@@ -1928,11 +1935,50 @@
          <prop name="baseline-configuration-name" value="Baseline Config. Name"/>
          <prop name="allows-authenticated-scan" value="no" />
          <prop name="scan-type" value="web" ns="http://fedramp.gov/ns/oscal" />
+         <link rel="validation" href="#11111111-2222-4000-8000-009001200002" />
          <status state="operational"/>
       </component>
 
+      <!-- ============= INTERNAL COMPONENTS - DATA AT REST ============= -->
+
+      <component uuid="11111111-2222-4000-8000-009000300200" type="software">
+         <title>Linux Operating System</title>
+         <description>
+            <p>This is a web server that communicates with a database via 
+               an encrypted connection</p>
+         </description>
+         <prop name="asset-type" value="operating-system"/>
+         <prop name="baseline-configuration-name" value="Baseline Config. Name"/>
+         <prop name="allows-authenticated-scan" value="yes" />
+         <prop name="scan-type" value="web" ns="http://fedramp.gov/ns/oscal" />
+         <status state="operational"/>
+      </component>
+      
 
 
+      <component uuid="11111111-2222-4000-8000-009001200002" type="validation">
+         <title>Cryptographic Module Name</title>
+         <description>
+            <p>Provide a description and any pertinent note regarding the use of this CM.</p>
+            <p>For example, any supporting notes on FIPS status (e.g. historical) or lack of FIPS
+               compliance (e.g., Module in Process).</p>
+         </description>
+         <prop name="asset-type" class="uses-os" value="cryptographic-module"/>
+         <prop name="validation-type" value="fips-140-3"/>
+         <prop name="validation-reference" value="3920"/>
+         <prop name="vendor-name" value="CM Vendor" ns="http://fedramp.gov/ns/oscal" />
+         <prop name="function" value="data-in-transit" ns="http://fedramp.gov/ns/oscal">
+            <remarks>
+               <p>Usage statement</p>
+            </remarks>
+         </prop>
+         <link rel="proof-of-compliance"
+            href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/3920"/>
+         <status state="operational"/>
+         
+      </component>
+      
+      
 
 
 
@@ -2015,9 +2061,9 @@
          <description>
             <p>Email Service</p>
          </description>
+         <prop name="is-scanned" value="yes"/> 
+         <prop name="is-scanned" value="yes"/> 
          <link href="#11111111-2222-4000-8000-009000500005" rel="used-by" />
-         <!-- is-scanned prop applies to inventory-item (not component) -->
-         <!-- <prop name="is-scanned" value="yes"/> -->
          <status state="operational"/>
          <protocol name="smtp">
             <port-range start="23" end="23" transport="TCP" />
@@ -2031,8 +2077,8 @@
             <p>FUNCTION: Describe typical component function.</p>
          </description>
          <prop name="asset-type" value="database"/>
-         <prop ns="http://fedramp.gov/ns/oscal" name="scan-type" value="infrastructure"/>
-         <prop ns="http://fedramp.gov/ns/oscal" name="scan-type" value="database"/>
+         <prop name="scan-type" value="infrastructure" ns="http://fedramp.gov/ns/oscal" />
+         <prop name="scan-type" value="database" ns="http://fedramp.gov/ns/oscal" />
          <prop name="vendor-name" value="Vendor Name"/>
          <prop name="model" value="Model Number"/>
          <prop name="version" value="Version Number"/>
@@ -2047,6 +2093,7 @@
             <p>COMMENTS: Provide other comments as needed.</p>
          </remarks>
       </component>
+      
       <component uuid="11111111-2222-4000-8000-009000300005" type="software">
          <title>OS Sample</title>
          <description>
@@ -2058,6 +2105,7 @@
          <prop name="allows-authenticated-scan" value="yes"/>
          <status state="operational"/>
       </component>
+      
       <component uuid="11111111-2222-4000-8000-009000300006" type="software">
          <title>Database Sample</title>
          <description>
@@ -2074,6 +2122,7 @@
             <port-range start="5432" end="5432" transport="UDP" />
          </protocol>
       </component>
+      
       <component uuid="11111111-2222-4000-8000-009000300007" type="software">
          <title>Appliance Sample</title>
          <description>
@@ -2167,7 +2216,7 @@
          <responsible-party role-id="asset-administrator">
             <party-uuid>11111111-2222-4000-8000-004000000017</party-uuid>
          </responsible-party>
-         <implemented-component component-uuid="11111111-2222-4000-8000-009000000007">
+         <implemented-component component-uuid="11111111-2222-4000-8000-009000300100">
             <remarks>
                <p>This links to a FIPS 140-2 validated software component that is used by this
                   inventory item. This type of linkage to a validation through the component is
@@ -2209,7 +2258,7 @@
          <responsible-party role-id="asset-administrator">
             <party-uuid>11111111-2222-4000-8000-004000000017</party-uuid>
          </responsible-party>
-         <implemented-component component-uuid="11111111-2222-4000-8000-009000000007">
+         <implemented-component component-uuid="11111111-2222-4000-8000-009000300100">
             <prop name="asset-id" value="unique-asset-ID-3"/>
          </implemented-component>
          <remarks>
@@ -2229,7 +2278,7 @@
          <prop name="ipv6-address" value="0000:0000:0000:0000:0000:ffff:0a03:0303"/>
          <prop name="is-scanned" value="yes"/>
          <prop ns="http://fedramp.gov/ns/oscal" name="scan-type" value="infrastructure"/>
-         <implemented-component component-uuid="11111111-2222-4000-8000-009000000008"
+         <implemented-component component-uuid="11111111-2222-4000-8000-009001200001"
          > </implemented-component>
       </inventory-item>
       <inventory-item uuid="11111111-2222-4000-8000-011000000004">
@@ -2244,8 +2293,7 @@
          <prop name="ipv6-address" value="0000:0000:0000:0000:0000:ffff:0a04:0404"/>
          <prop name="is-scanned" value="yes"/>
          <prop ns="http://fedramp.gov/ns/oscal" name="scan-type" value="infrastructure"/>
-         <implemented-component component-uuid="11111111-2222-4000-8000-009000000007"
-         > </implemented-component>
+         <implemented-component component-uuid="11111111-2222-4000-8000-009001200001" /> 
       </inventory-item>
       <inventory-item uuid="11111111-2222-4000-8000-011000000005">
          <description>
@@ -2259,8 +2307,7 @@
          <prop name="public" value="yes"/>
          <prop name="is-scanned" value="yes"/>
          <prop ns="http://fedramp.gov/ns/oscal" name="scan-type" value="infrastructure"/>
-         <implemented-component component-uuid="11111111-2222-4000-8000-009000000011"
-         > </implemented-component>
+         <implemented-component component-uuid="11111111-2222-4000-8000-009001200001" /> 
       </inventory-item>
       <inventory-item uuid="11111111-2222-4000-8000-011000000006">
          <description>
@@ -2277,7 +2324,7 @@
                <p>Asset wasn't running at time of scan.</p>
             </remarks>
          </prop>
-         <implemented-component component-uuid="11111111-2222-4000-8000-009000000007"
+         <implemented-component component-uuid="11111111-2222-4000-8000-009001200001"
          > </implemented-component>
       </inventory-item>
       <inventory-item uuid="11111111-2222-4000-8000-011000000007">
@@ -2292,7 +2339,7 @@
          <prop name="public" value="no"/>
          <prop name="is-scanned" value="yes"/>
          <prop ns="http://fedramp.gov/ns/oscal" name="scan-type" value="infrastructure"/>
-         <implemented-component component-uuid="11111111-2222-4000-8000-009000000008"
+         <implemented-component component-uuid="11111111-2222-4000-8000-009001200001"
          > </implemented-component>
       </inventory-item>
       <inventory-item uuid="11111111-2222-4000-8000-011000000008">
@@ -2310,7 +2357,7 @@
                <p>Asset wasn't running at time of scan.</p>
             </remarks>
          </prop>
-         <implemented-component component-uuid="11111111-2222-4000-8000-009000000007"
+         <implemented-component component-uuid="11111111-2222-4000-8000-009001200001"
          > </implemented-component>
       </inventory-item>
       <inventory-item uuid="11111111-2222-4000-8000-011000000009">
@@ -2325,7 +2372,7 @@
          <prop name="public" value="no"/>
          <prop name="is-scanned" value="yes"/>
          <prop ns="http://fedramp.gov/ns/oscal" name="scan-type" value="infrastructure"/>
-         <implemented-component component-uuid="11111111-2222-4000-8000-009000000018"
+         <implemented-component component-uuid="11111111-2222-4000-8000-009001200001"
          > </implemented-component>
       </inventory-item>
    </system-implementation>
