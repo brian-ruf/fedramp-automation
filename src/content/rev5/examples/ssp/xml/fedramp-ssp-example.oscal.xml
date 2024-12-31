@@ -1849,7 +1849,6 @@
             <p>None</p>
          </description>
          <prop name="asset-type" value="database"/>
-         <prop name="baseline-configuration-name" value="Baseline Config. Name"/>
          <prop name="allows-authenticated-scan" value="yes"/>
          <prop name="scan-type" value="database" ns="http://fedramp.gov/ns/oscal" />
          <link rel="used-by" href="#11111111-2222-4000-8000-009000500006" />
@@ -1932,10 +1931,10 @@
             an encrypted connection</p>
          </description>
          <prop name="asset-type" value="web-server"/>
-         <prop name="baseline-configuration-name" value="Baseline Config. Name"/>
          <prop name="allows-authenticated-scan" value="no" />
          <prop name="scan-type" value="web" ns="http://fedramp.gov/ns/oscal" />
          <link rel="validation" href="#11111111-2222-4000-8000-009001200002" />
+         <link rel="baseline" href="#11111111-2222-4000-8000-001000000059" />
          <status state="operational"/>
       </component>
 
@@ -1948,9 +1947,9 @@
                an encrypted connection</p>
          </description>
          <prop name="asset-type" value="operating-system"/>
-         <prop name="baseline-configuration-name" value="Baseline Config. Name"/>
          <prop name="allows-authenticated-scan" value="yes" />
          <prop name="scan-type" value="web" ns="http://fedramp.gov/ns/oscal" />
+         <link rel="baseline" href="#11111111-2222-4000-8000-001000000059" />
          <status state="operational"/>
       </component>
       
@@ -2101,8 +2100,8 @@
          </description>
          <prop name="asset-type" value="operating-system"/>
          <prop ns="http://fedramp.gov/ns/oscal" name="scan-type" value="infrastructure"/>
-         <prop name="baseline-configuration-name" value="Baseline Config. Name"/>
          <prop name="allows-authenticated-scan" value="yes"/>
+         <link rel="baseline" href="#11111111-2222-4000-8000-001000000059" />
          <status state="operational"/>
       </component>
       
@@ -2113,9 +2112,9 @@
          </description>
          <prop name="asset-type" value="database"/>
          <prop ns="http://fedramp.gov/ns/oscal" name="scan-type" value="database"/>
-         <prop name="baseline-configuration-name" value="Baseline Config. Name"/>
          <prop name="allows-authenticated-scan" value="yes"/>
          <link href="#11111111-2222-4000-8000-009000500006" rel="used-by" />
+         <link rel="baseline" href="#11111111-2222-4000-8000-001000000059" />
          <status state="operational"/>
          <protocol name="postgresql">
             <port-range start="5432" end="5432" transport="TCP" />
@@ -2132,12 +2131,12 @@
          <prop ns="http://fedramp.gov/ns/oscal" name="scan-type" value="web"/>
          <prop ns="http://fedramp.gov/ns/oscal" name="login-url"
             value="https://admin.offering.com/login"/>
-         <prop name="baseline-configuration-name" value="Baseline Config. Name"/>
          <prop name="allows-authenticated-scan" value="no">
             <remarks>
                <p>Vendor appliance. No admin-level access.</p>
             </remarks>
          </prop>
+         <link rel="baseline" href="#11111111-2222-4000-8000-001000000059" />
          <status state="operational"/>
       </component>
 
@@ -2197,7 +2196,6 @@
                <p>If no, explain why. If yes, omit remarks field.</p>
             </remarks>
          </prop>
-         <prop name="baseline-configuration-name" value="Baseline Config. Name"/>
          <prop name="physical-location" value="Physical location of Asset"/>
          <prop name="is-scanned" value="yes">
             <remarks>
@@ -2210,6 +2208,7 @@
             </remarks>
          </prop>
          <link rel="validation" href="#11111111-2222-4000-8000-009000000002"/>
+         <link rel="baseline" href="#11111111-2222-4000-8000-001000000059" />
          <responsible-party role-id="asset-owner">
             <party-uuid>11111111-2222-4000-8000-004000000016</party-uuid>
          </responsible-party>
@@ -2244,7 +2243,6 @@
          <prop name="netbios-name" value="netbios-name"/>
          <!-- patch-level applies to component, not inventory-item -->
          <!-- <prop name="patch-level" value="Patch-Level"/> -->
-         <prop name="baseline-configuration-name" value="Baseline Configuration Name"/>
          <prop name="physical-location" value="Physical location of Asset"/>
          <prop name="allows-authenticated-scan" value="no">
             <remarks>
@@ -2252,6 +2250,7 @@
             </remarks>
          </prop>
          <prop ns="http://fedramp.gov/ns/oscal" name="scan-type" value="infrastructure"/>
+         <link rel="baseline" href="#11111111-2222-4000-8000-001000000059" />
          <responsible-party role-id="asset-owner">
             <party-uuid>11111111-2222-4000-8000-004000000010</party-uuid>
          </responsible-party>
