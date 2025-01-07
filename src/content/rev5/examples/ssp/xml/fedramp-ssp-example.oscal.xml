@@ -540,7 +540,7 @@
       </remarks>
     </responsible-party>
   </metadata>
-  <import-profile href="https://raw.githubusercontent.com/GSA/fedramp-automation/refs/heads/master/dist/content/rev5/baselines/xml/FedRAMP_rev5_HIGH-baseline_profile.xml">
+  <import-profile href="https://raw.githubusercontent.com/GSA/fedramp-automation/refs/heads/master/src/content/rev5/baselines/xml/FedRAMP_rev5_HIGH-baseline_profile.xml">
     <remarks>
       <p>This example points to the FedRAMP Rev 5 Moderate baseline that is part of the official
             FedRAMP 3.0.0 release.</p>
