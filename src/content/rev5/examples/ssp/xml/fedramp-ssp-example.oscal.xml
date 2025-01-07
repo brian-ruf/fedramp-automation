@@ -3,11 +3,11 @@
 <system-security-plan xmlns="http://csrc.nist.gov/ns/oscal/1.0"
    uuid="11111111-2222-4000-8000-000000000000">
    <metadata>
-      <title>FedRAMP [Baseline Name] System Security Plan (SSP)</title>
+      <title>[EXAMPLE] FedRAMP [Baseline Name] System Security Plan (SSP)</title>
       <published>2024-12-31T23:59:59Z</published>
       <last-modified>2024-11-05T02:24:00Z</last-modified>
       <version>fedramp3.0.0-oscal1.1.4</version>
-      <oscal-version>1.1.2</oscal-version>
+      <oscal-version>1.1.3</oscal-version>
       <revisions>
          <revision>
             <published>2023-06-30T00:00:00Z</published>
@@ -1084,7 +1084,6 @@
                <li>the name of the service in the title - exactly as it appears in the FedRAMP
                   Marketplace</li>
                <li>an "implementation-point" property with a value of "external"; and</li>
-               <li>one or two "direction" prperty/extensions</li>
                <li>One or more "information-type" property/extensions, where the allowed values are the 800-63
                   information type identifiers, and the cited types are included full list of system information types.</li>
                <li>exactly one "poam-item" link, with an href value that references the 
@@ -1280,7 +1279,6 @@
             <ul>
                <li>an "implementation-point" property with a value of "external"</li>
                <li>a "status" field with a state value of "operational"</li>
-               <li>one or two "direction" properties</li>
                <li>a "nature-of-agreement" property/extension</li>
                <li>one or more "authentication-method" properties/extensions.</li>
                <li>a "hosting-environment" proptery/extension</li>
@@ -1603,8 +1601,7 @@
             <remarks>
                <p>Terms of Use</p>
             </remarks>
-         </prop>          
-
+         </prop>
          <prop name="allows-authenticated-scan" value="no" >
             <remarks>
                <p>Explain why authentication scans are not possible for this component.
@@ -1612,7 +1609,6 @@
             </remarks>
          </prop>
          <prop name="scan-type" value="infrastructure" ns="http://fedramp.gov/ns/oscal" />
-         
          <link rel="communicates-with" href="#11111111-2222-4000-8000-009000100001" />
          <link  rel="poam-item"   href="#11111111-2222-4000-8000-001000000048" resource-fragment="11111111-3333-4000-8000-000000000005" />
          <status state="operational"/>
@@ -1725,7 +1721,6 @@
       </component>
 
 
-
       <!-- =============    DOCUMENTS     ============= -->
 
       <!-- SSP Attachments - Policies -->
@@ -1833,7 +1828,6 @@
          </description>
          <prop name="asset-type" value="encrypted" />
          <prop name="asset-id" value="ref-01" />
-         <prop name="implementation-point" value="internal" />
          <prop name="connection-security" value="tls-1.3" ns="http://fedramp.gov/ns/oscal" />
          <link rel="used-by" href="#11111111-2222-4000-8000-009000300100" />
          <link rel="used-by" href="#11111111-2222-4000-8000-009000300200" />
@@ -3563,10 +3557,12 @@
       <resource uuid="11111111-2222-4000-8000-001000000048">
          <title>Plan of Actions and Milestones (POAM)</title>
          <prop name="published" value="2023-05-31T00:00:00Z"/>
-         <prop name="type" value="plan" class="poam"/>
-         <rlink href="./attachments/POAMs/SAMPLE_POAM_20230531.xml" media-type="=application/xml"/>
-         <rlink href="./attachments/POAMs/SAMPLE_POAM_20230531.xlsx" media-type="application/vnd.ms-excel"/>
-         <base64 filename="SAMPLE_POAM_20230531.xml" media-type="application/xml">00000000</base64>
+         <!-- If the "oscal-content" FRX is present, any rlink with media type of "application/xml",
+              "application/json" or "application/yaml" is expected to be OSCAL XML, JSON or YAML.
+              Other rlink media type values are allowed, but those rlink fieldss are ignored by FedRAMP.
+         -->
+         <prop ns="http://fedramp.gov/ns/oscal" name="type" value="fedramp-poam"/>
+         <rlink media-type="application/xml;oscal-model=poam" href="fedramp-poam-example.oscal.xml" />         
          <remarks>
             <p>The POA&amp;M attachment may either be a legacy Excel workbook or OSCAL file.
             The resource must have:</p>
@@ -3580,6 +3576,7 @@
             <p>A "version" property is optional.</p>
             <p>The appropriate media types for OSCAL content 
                are, "application/xml", "application/json" or "application/yaml".</p>
+            <p>FedRAMP does not accept base64 POA&amp;M contenta at this time.</p>
          </remarks>
       </resource>
       <!-- Appendix P - Supply Chain Risk Management Plan (SCRMP) -->
