@@ -1521,7 +1521,7 @@
         </ul>
       </remarks>
     </component>
-    <component uuid="11111111-2222-4000-8000-009000300003" type="software">
+    <component uuid="11111111-2222-4000-8000-009000300002" type="software">
       <title>External Management CLI</title>
       <description>
         <p>A CLI tool used by systems outside the authorization boundary to manage
@@ -1772,7 +1772,7 @@
       <link rel="baseline" href="#11111111-2222-4000-8000-001000000059" />
       <status state="operational" />
     </component>
-    <component uuid="11111111-2222-4000-8000-009000300200" type="software">
+    <component uuid="11111111-2222-4000-8000-009000300300" type="software">
       <title>Linux Operating System</title>
       <description>
         <p>This is a web server that communicates with a database via 
@@ -1784,25 +1784,7 @@
       <link rel="baseline" href="#11111111-2222-4000-8000-001000000059" />
       <status state="operational" />
     </component>
-    <component uuid="11111111-2222-4000-8000-009001200002" type="validation">
-      <title>Cryptographic Module Name</title>
-      <description>
-        <p>Provide a description and any pertinent note regarding the use of this CM.</p>
-        <p>For example, any supporting notes on FIPS status (e.g. historical) or lack of FIPS
-               compliance (e.g., Module in Process).</p>
-      </description>
-      <prop name="asset-type" class="uses-os" value="cryptographic-module" />
-      <prop name="validation-type" value="fips-140-3" />
-      <prop name="validation-reference" value="3920" />
-      <prop name="vendor-name" value="CM Vendor" ns="http://fedramp.gov/ns/oscal" />
-      <prop name="function" value="data-in-transit" ns="http://fedramp.gov/ns/oscal">
-        <remarks>
-          <p>Usage statement</p>
-        </remarks>
-      </prop>
-      <link rel="proof-of-compliance" href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/3920" />
-      <status state="operational" />
-    </component>
+
     <component uuid="11111111-2222-4000-8000-009000500005" type="service">
       <title>Service D</title>
       <description>
@@ -1812,7 +1794,7 @@
       <prop name="implementation-point" value="internal" />
       <status state="operational" />
     </component>
-    <component uuid="11111111-2222-4000-8000-009001200002" type="software">
+    <component uuid="11111111-2222-4000-8000-009000300008" type="software">
       <title>Container Image</title>
       <description>
         <p>This is a container image used to create container instances within the system.</p>
@@ -1825,26 +1807,6 @@
       <responsible-role role-id="administrator">
         <party-uuid>44444444-2222-4000-8000-004000000001</party-uuid>
       </responsible-role>
-    </component>
-    <component uuid="11111111-2222-4000-8000-009000300002" type="software">
-      <title>[SAMPLE]Product Name</title>
-      <description>
-        <p>FUNCTION: Describe typical component function.</p>
-      </description>
-      <prop name="asset-type" value="operating-system" />
-      <prop ns="http://fedramp.gov/ns/oscal" name="scan-type" value="infrastructure" />
-      <prop name="vendor-name" value="Vendor Name" />
-      <prop name="model" value="Model Number" />
-      <prop name="version" value="Version Number" />
-      <prop name="patch-level" value="Patch Level" />
-      <link rel="validation" href="#11111111-2222-4000-8000-009000000002" />
-      <status state="operational" />
-      <responsible-role role-id="admin-unix">
-        <party-uuid>11111111-2222-4000-8000-004000000010</party-uuid>
-      </responsible-role>
-      <remarks>
-        <p>COMMENTS: Provide other comments as needed.</p>
-      </remarks>
     </component>
     <component uuid="11111111-2222-4000-8000-009000300004" type="software">
       <title>[SAMPLE]Product Name</title>
@@ -1963,6 +1925,8 @@
       <description>
         <p>Legacy Example (No implemented-component).</p>
       </description>
+      <prop name="asset-id" value="unique-asset-ID-01"/>
+      <prop name="software-version" value="software-version"/>
       <prop name="ipv4-address" value="10.1.1.1" />
       <prop name="ipv6-address" value="2001:db8:3333:4444:5555:6666:7777:8888" />
       <prop name="virtual" value="no" />
