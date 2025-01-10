@@ -390,6 +390,14 @@ Examples:
   | inventory-item-allows-authenticated-scan-PASS.yaml |
   | inventory-item-and-component-has-public-FAIL.yaml |
   | inventory-item-and-component-has-public-PASS.yaml |
+  | inventory-item-has-function-FAIL.yaml |
+  | inventory-item-has-function-PASS.yaml |
+  | inventory-item-has-scan-type-FAIL.yaml |
+  | inventory-item-has-scan-type-PASS.yaml |
+  | inventory-item-has-software-name-FAIL.yaml |
+  | inventory-item-has-software-name-PASS.yaml |
+  | inventory-item-has-software-version-FAIL.yaml |
+  | inventory-item-has-software-version-PASS.yaml |
   | inventory-item-has-valid-mac-address-FAIL.yaml |
   | inventory-item-has-valid-mac-address-PASS.yaml |
   | inventory-item-has-vendor-name-FAIL.yaml |
