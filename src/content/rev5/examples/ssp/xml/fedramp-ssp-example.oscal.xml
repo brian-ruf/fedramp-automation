@@ -27,6 +27,9 @@
     </revisions>
     <prop name="marking" value="cui" class="fedramp.gov" />
     <prop name="fedramp-version" ns="http://fedramp.gov/ns/oscal" value="fedramp-3.0.0-oscal-1.1.2" />
+    <role id="isso">
+      <title>ISSO</title>
+    </role>
     <role id="fedramp-pmo">
       <title>FedRAMP Program Management Office</title>
       <description>
@@ -467,6 +470,9 @@
     </party>
     <responsible-party role-id="provider">
       <party-uuid>11111111-2222-4000-8000-004000000018</party-uuid>
+    </responsible-party>
+    <responsible-party role-id="isso">
+      <party-uuid>11111111-2222-4000-8000-004000000001</party-uuid>
     </responsible-party>
     <responsible-party role-id="cloud-service-provider">
       <party-uuid>11111111-2222-4000-8000-004000000001</party-uuid>
