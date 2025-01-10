@@ -3,7 +3,9 @@ test-case:
   description: >-
     This test case validates the behavior of constraint
     has-required-response-points
-  content: ../../../content/rev5/examples/ssp/xml/fedramp-ssp-example.oscal.xml
+  content: 
+    - ../../../content/rev5/examples/ssp/xml/fedramp-ssp-example.oscal.xml
+    - ../content/ssp-has-required-response-points-VALID.xml
   expectations:
     - constraint-id: has-required-response-points
       result: pass

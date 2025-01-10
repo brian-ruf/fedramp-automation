@@ -1,0 +1,7 @@
+test-case:
+  name: Negative Test for end-of-life-date-type
+  description: This test case validates the behavior of constraint end-of-life-date-type
+  content: ../content/ssp-end-of-life-date-type-INVALID.xml
+  expectations:
+    - constraint-id: end-of-life-date-type
+      result: fail

@@ -1,0 +1,9 @@
+test-case:
+  name: Negative Test for inventory-item-has-software-version
+  description: >-
+    This test case validates the behavior of constraint
+    inventory-item-has-software-version
+  content: ../content/ssp-inventory-item-has-software-version-INVALID.xml
+  expectations:
+    - constraint-id: inventory-item-has-software-version
+      result: fail

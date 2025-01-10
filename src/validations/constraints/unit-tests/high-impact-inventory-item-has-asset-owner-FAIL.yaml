@@ -1,0 +1,9 @@
+test-case:
+  name: Negative Test for high-impact-inventory-item-has-asset-owner
+  description: >-
+    This test case validates the behavior of constraint
+    high-impact-inventory-item-has-asset-owner
+  content: ../content/ssp-high-impact-inventory-item-has-asset-owner-INVALID.xml
+  expectations:
+    - constraint-id: high-impact-inventory-item-has-asset-owner
+      result: fail

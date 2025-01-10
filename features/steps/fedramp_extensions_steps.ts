@@ -1,23 +1,22 @@
-import { BeforeAll, BeforeStep, Given, Then, When, setDefaultTimeout, world } from "@cucumber/cucumber";
+import { BeforeAll, Given, Then, When, setDefaultTimeout } from "@cucumber/cucumber";
 import { expect } from "chai";
 import {
+  existsSync,
+  mkdirSync,
   readFileSync,
   readdirSync,
   unlinkSync,
   writeFileSync,
-  mkdirSync,
-  existsSync,
 } from "fs";
 import { load } from "js-yaml";
-import { executeOscalCliCommand, resolveProfile, resolveProfileDocument, validateDocument} from "oscal";
-import {checkServerStatus} from 'oscal/dist/server.js'
-import { dirname, join,parse, resolve } from "path";
-import { Exception, Log, Result } from "sarif";
+import { JSDOM } from 'jsdom';
+import { executeOscalCliCommand, formatSarifOutput, resolveProfileDocument, validateDocument } from "oscal";
+import { checkServerStatus } from 'oscal/dist/server.js';
+import { dirname, join, parse, resolve } from "path";
+import { Log } from "sarif";
 import { fileURLToPath } from "url";
-import { parseString } from "xml2js";
-import {JSDOM} from 'jsdom'
 import { promisify } from "util";
-import {formatSarifOutput} from 'oscal'
+import { parseString } from "xml2js";
 let executor: 'oscal-cli'|'oscal-server' = process.env.OSCAL_EXECUTOR as 'oscal-cli'|'oscal-server' || 'oscal-cli'
 const quiet = process.env.OSCAL_TEST_QUIET === 'true'
 
@@ -686,6 +685,7 @@ Then('I should have valid results {string}', async function (fileToValidate) {
 
 Then('I should verify that all constraints follow the style guide constraint', async function () {
   const baseDir = join(__dirname, '..', '..');
+  const styleGuidePath = join(baseDir, 'src', 'validations', 'styleguides', 'fedramp-constraint-style.xml');
   const constraintDir = join(baseDir, 'src', 'validations', 'constraints');
   const constraintFiles = readdirSync(constraintDir).filter(file => 
     file.startsWith('fedramp') && file.endsWith('.xml')
@@ -701,7 +701,15 @@ Then('I should verify that all constraints follow the style guide constraint', a
       const fileContent = readFileSync(filePath, 'utf8');
       const dom = new JSDOM(fileContent, { contentType: 'text/xml' });
       const document = dom.window.document;
-
+      const {isValid,log} = await validateDocument(filePath,{flags:['disable-schema'],quiet,extensions:[styleGuidePath],module:"http://csrc.nist.gov/ns/oscal/metaschema/1.0"},executor)
+      writeFileSync(
+        join(
+          __dirname,
+          "../../sarif/",
+          fileName.split(".xml").join("").toString()+".sarif"
+        ),JSON.stringify(log, null,"\t"))  
+      const formattedErrors = (formatSarifOutput(log));
+      formattedErrors&&errors.push(formattedErrors)
       // Process each 'constraints' block separately
       document.querySelectorAll('constraints').forEach(constraintsNode => {
         // Get direct child elements with IDs within this constraints block

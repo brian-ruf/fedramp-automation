@@ -1,0 +1,7 @@
+test-case:
+  name: Negative Test for scan-type-has-remarks
+  description: This test case validates the behavior of constraint scan-type-has-remarks
+  content: ../content/ssp-scan-type-has-remarks-INVALID.xml
+  expectations:
+    - constraint-id: scan-type-has-remarks
+      result: fail

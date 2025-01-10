@@ -1,0 +1,9 @@
+test-case:
+  name: Negative Test for inventory-item-has-function
+  description: >-
+    This test case validates the behavior of constraint
+    inventory-item-has-function
+  content: ../content/ssp-inventory-item-has-function-INVALID.xml
+  expectations:
+    - constraint-id: inventory-item-has-function
+      result: fail

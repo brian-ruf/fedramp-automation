@@ -1,0 +1,7 @@
+test-case:
+  name: Positive Test for scan-type-has-remarks
+  description: This test case validates the behavior of constraint scan-type-has-remarks
+  content: ../../../content/rev5/examples/ssp/xml/fedramp-ssp-example.oscal.xml
+  expectations:
+    - constraint-id: scan-type-has-remarks
+      result: pass

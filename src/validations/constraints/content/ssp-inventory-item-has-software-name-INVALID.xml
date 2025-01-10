@@ -1,0 +1,13 @@
+<system-security-plan xmlns="http://csrc.nist.gov/ns/oscal/1.0" uuid="11111111-2222-4000-8000-000000000000">
+  <system-implementation>
+    <component uuid="11111111-2222-4000-8000-009000000007" type="software">
+      <!-- <prop name="software-name" value="software-name"/> Missing software-name in linked component-->
+    </component>
+    <inventory-item uuid="11111111-2222-4000-8000-011000000001">
+      <prop name="asset-type" value="operating-system"/>
+      <!-- <prop name="software-name" value="software-name"/> Missing software-name in inventory-item.-->
+      <implemented-component component-uuid="11111111-2222-4000-8000-009000000007">
+      </implemented-component>
+    </inventory-item>
+  </system-implementation>
+</system-security-plan>

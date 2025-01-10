@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<system-security-plan xmlns="http://csrc.nist.gov/ns/oscal/1.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://csrc.nist.gov/ns/oscal/1.0 https://github.com/usnistgov/OSCAL/releases/download/v1.1.2/oscal_ssp_schema.xsd"
+    uuid="12345678-1234-4321-8765-123456789012">
+    <metadata>
+        <title>Test SSP for End of Life Date Type Validation</title>
+        <last-modified>2023-12-08T12:00:00Z</last-modified>
+        <version>1.0</version>
+        <oscal-version>1.0.0</oscal-version>
+    </metadata>
+    <system-implementation>
+        <component uuid="11111111-0000-4000-9000-000000000001" type="software">
+            <title>Example Component</title>
+            <description>
+                <p>A component with an invalid end-of-life-date format</p>
+            </description>
+            <prop ns="http://fedramp.gov/ns/oscal" name="end-of-life-date" value="not-a-valid-date"/>
+            <status state="operational"/>
+        </component>
+    </system-implementation>
+</system-security-plan>

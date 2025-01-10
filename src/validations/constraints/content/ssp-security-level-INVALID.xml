@@ -24,4 +24,13 @@
       <security-objective-availability>INVALID-fips-199-moderate</security-objective-availability>
     </security-impact-level>
   </system-characteristics>
+  <system-implementation>
+    <leveraged-authorization uuid="11111111-2222-4000-8000-019000000001">
+      <prop ns="http://fedramp.gov/ns/oscal" name="impact-level" value="INVALID-fips-199-moderate">
+        <remarks>
+          <p>For now, this is a required field. In the future we intend to pull this information directly from FedRAMP's records based on the "leveraged-system-identifier" property's value.</p>
+        </remarks>
+      </prop>
+    </leveraged-authorization>
+  </system-implementation>
 </system-security-plan>

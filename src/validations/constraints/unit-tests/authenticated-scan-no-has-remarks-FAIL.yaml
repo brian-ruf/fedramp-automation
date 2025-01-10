@@ -1,0 +1,9 @@
+test-case:
+  name: Negative Test for authenticated-scan-no-has-remarks
+  description: >-
+    This test case validates the behavior of constraint
+    authenticated-scan-no-has-remarks
+  content: ../content/ssp-authenticated-scan-no-has-remarks-INVALID.xml
+  expectations:
+    - constraint-id: authenticated-scan-no-has-remarks
+      result: fail

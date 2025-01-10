@@ -647,9 +647,10 @@
         <metapath target="/system-security-plan/system-characteristics/security-sensitivity-level"/>
         <metapath target="/system-security-plan/system-characteristics/security-impact-level/(security-objective-confidentiality|security-objective-integrity|security-objective-availability)"/>
         <metapath target="/system-security-plan/system-characteristics/system-information/information-type/(confidentiality-impact|integrity-impact|availability-impact)/(base|selected)"/>
+        <metapath target="/system-security-plan/system-implementation/leveraged-authorization"/>
         <constraints>
-
-            <allowed-values id="security-level" target="." allow-other="no" level="ERROR">
+            <let var="security-level-target" expression="if (prop[@name='impact-level' and @ns='http://fedramp.gov/ns/oscal']) then prop[@name='impact-level' and @ns='http://fedramp.gov/ns/oscal']/@value else ."/>
+            <allowed-values id="security-level" target="$security-level-target" allow-other="no" level="ERROR">
                 <formal-name>Security Impact Level</formal-name>
                 <description>The security objective level as defined by <a href="https://doi.org/10.6028/NIST.SP.800-60v1r1">NIST SP 800-60</a>.
                 </description>
