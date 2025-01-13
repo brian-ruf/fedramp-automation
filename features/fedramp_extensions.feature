@@ -129,7 +129,6 @@ Examples:
   | inventory-item-has-software-name |
   | inventory-item-has-software-version |
   | inventory-item-has-valid-mac-address |
-  | inventory-item-has-vendor-name |
   | inventory-item-or-component-has-asset-id |
   | inventory-item-public |
   | inventory-item-virtual |
