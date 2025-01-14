@@ -585,7 +585,7 @@
     <prop name="authenticator-assurance-level" value="2"/>
     <prop name="federation-assurance-level" value="2"/>
     <prop ns="http://fedramp.gov/ns/oscal" name="fully-operational-date"
-      value="2023-12031T00:00:00Z"/>
+      value="2023-12-31T00:00:00Z"/>
     <prop ns="http://fedramp.gov/ns/oscal" name="authorization-type" value="fedramp-agency"/>
     <security-sensitivity-level>fips-199-high</security-sensitivity-level>
     <system-information>
@@ -2496,18 +2496,37 @@
       </statement>
     </implemented-requirement>
     <implemented-requirement control-id="ac-2" uuid="11111111-2222-4000-8000-012000020000">
-      <set-parameter param-id="ac-2_prm_1">
+      <set-parameter param-id="ac-2_odp.01">
         <value>[SAMPLE]privileged, non-privileged</value>
       </set-parameter>
-      <set-parameter param-id="ac-2_prm_2">
+      <set-parameter param-id="ac-2_odp.02">
         <value>[SAMPLE]all</value>
       </set-parameter>
-      <set-parameter param-id="ac-2_prm_3">
+      <set-parameter param-id="ac-2_odp.03">
         <value>[SAMPLE]The Access Control Procedure</value>
       </set-parameter>
-      <set-parameter param-id="ac-2_prm_4">
+      <set-parameter param-id="ac-2_odp.04">
         <value>at least annually</value>
       </set-parameter>
+      <set-parameter param-id="ac-2_odp.05">
+        <value>at least annually</value>
+      </set-parameter>
+      <set-parameter param-id="ac-2_odp.06">
+        <value>at least annually</value>
+      </set-parameter>
+      <set-parameter param-id="ac-2_odp.07">
+        <value>at least annually</value>
+      </set-parameter>
+      <set-parameter param-id="ac-2_odp.08">
+        <value>at least annually</value>
+      </set-parameter>
+      <set-parameter param-id="ac-2_odp.09">
+        <value>at least annually</value>
+      </set-parameter>
+      <set-parameter param-id="ac-2_odp.10">
+        <value>at least annually</value>
+      </set-parameter>
+
       <statement statement-id="ac-2_smt.a" uuid="11111111-2222-4000-8000-012000020100">
         <by-component component-uuid="11111111-2222-4000-8000-009000000000" uuid="11111111-2222-4000-8000-012000020101">
           <description>
@@ -2642,14 +2661,57 @@
     </implemented-requirement>
     <implemented-requirement control-id="ia-1" uuid="11111111-2222-4000-8000-012000030000">
       <prop ns="http://fedramp.gov/ns/oscal" name="control-origination" value="sp-system"/>
-      <set-parameter param-id="ac-1_prm_1">
-        <value>organization-defined personnel or roles</value>
+      <set-parameter param-id="ac-01_odp.01">
+        <value>all managers, administrators and users of the system</value>
+        <remarks>
+          <p>[Assignment: organization-defined personnel or roles]</p>
+          <p>This focuses on roles the POLICY is disseminated to.</p>
+        </remarks>
+      </set-parameter>
+      <set-parameter param-id="ac-01_odp.02">
+        <value>all managers and administrators of the system</value>
+        <remarks>
+          <p>[Assignment: organization-defined personnel or roles]</p>
+          <p>This focuses on roles PROCEDURES are disseminated to.</p>
+        </remarks>
+      </set-parameter>
+      <set-parameter param-id="ac-01_odp.03">
+        <value>System-level</value>
+        <remarks>
+          <p>[Selection (one or more): Organization-level; Mission/business process-level;
+            Systemlevel]</p>
+          <p>This is a SELECT parameter. Use one "value" field for each selection.</p>
+        </remarks>
+      </set-parameter>
+      <set-parameter param-id="ac-01_odp.04">
+        <value>System Architect</value>
+        <remarks>
+          <p>[Assignment: organization-defined official]</p>
+        </remarks>
       </set-parameter>
       <set-parameter param-id="ac-01_odp.05">
         <value>at least every 3 years</value>
+        <remarks>
+          <p>[Assignment: organization-defined frequency]</p>
+        </remarks>
+      </set-parameter>
+      <set-parameter param-id="ac-01_odp.06">
+        <value>change in organizational legal status or ownership</value>
+        <remarks>
+          <p>[Assignment:organization-defined events]</p>
+        </remarks>
       </set-parameter>
       <set-parameter param-id="ac-01_odp.07">
         <value>at least annually</value>
+        <remarks>
+          <p>[Assignment: organization-defined frequency]</p>
+        </remarks>
+      </set-parameter>
+      <set-parameter param-id="ac-01_odp.08">
+        <value>change in policy or a security incident involving a failure of access control mechanisms</value>
+        <remarks>
+          <p>[Assignment:organization-defined events]</p>
+        </remarks>
       </set-parameter>
       <statement statement-id="ia-1_smt.a" uuid="11111111-2222-4000-8000-012000030100">
         <by-component component-uuid="11111111-2222-4000-8000-009000000000"
