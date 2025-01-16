@@ -1749,6 +1749,8 @@
       <link href="#11111111-2222-4000-8000-001000000024" rel="attachment"/>
       <status state="operational"/>
     </component>
+    
+    
     <component uuid="11111111-2222-4000-8000-009001400001" type="connection">
       <title>Encrypted Communication</title>
       <description>
@@ -1778,7 +1780,6 @@
       <prop ns="http://fedramp.gov/ns/oscal" name="scan-type" value="database" />
       <prop ns="http://fedramp.gov/ns/oscal" name="vendor-name" value="Small Biz Software, LLC" />
       <link rel="used-by" href="#11111111-2222-4000-8000-009000500006"/>
-      <link rel="validation" href="#11111111-2222-4000-8000-009001200001"/>
       <status state="operational"/>
       <responsible-role role-id="administrator">
         <party-uuid>11111111-2222-4000-8000-004000000010</party-uuid>
@@ -1788,8 +1789,43 @@
         <port-range start="5432" end="5432" transport="UDP"/>
       </protocol>
     </component>
-    <component uuid="11111111-2222-4000-8000-009001200001" type="validation">
-      <title>Cryptographic Module Name</title>
+    
+    <component type="software" uuid="11111111-2222-4000-8000-009000300012">
+      <title>Database Row Encryption Module</title>
+      <description>
+        <p>Briefly describe the cryptographic module.</p>
+      </description>
+      <prop name="asset-type" value="cryptographic-module" />
+      <prop name="software-name" value="abc" />
+      <prop name="software-version" value="1.2.3" />
+      <prop name="vendor-name" value="Databases-R-Us" ns="http://fedramp.gov/ns/oscal"/>
+      <prop name="function" value="data-at-rest" ns="http://fedramp.gov/ns/oscal">
+        <remarks>
+          <p>Used to encrypt and decrypt rows in the database.</p>
+        </remarks>
+      </prop>    
+      <status state="operational"></status>
+    </component>
+    
+    <component type="validation" uuid="11111111-2222-4000-8000-009000300012">
+      <title>Database Row Encryption Module (DREM)</title>
+      <description>
+        <p>Briefly describe the cryptographic module.</p>
+      </description>
+      <prop name="asset-type" value="cryptographic-module" />
+      
+      <prop name="validation-type" value="fips-140-2"/>
+      <prop name="validation-reference" value="0000"/>
+      <link rel="proof-of-compliance"
+        href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/0000"/>
+      <status state="operational"/>
+      <remarks>
+        <p>.</p>
+      </remarks>
+    </component>
+    
+    <component type="software" uuid="11111111-2222-4000-8000-009001200003">
+      <title>OpenSSL</title>
       <description>
         <p>Provide a description and any pertinent note regarding the use of this CM.</p>
         <p>For data-at-rest modules, describe type of encryption implemented (e.g., full disk, file,
@@ -1797,35 +1833,81 @@
         <p>Lastly, provide any supporting notes on FIPS status (e.g. historical) or lack of FIPS
           compliance (e.g., Module in Process).</p>
       </description>
-      <prop name="asset-type" class="embedded" value="cryptographic-module"/>
-      <prop name="validation-type" value="fips-140-2"/>
-      <prop name="validation-reference" value="3928"/>
-      <prop name="vendor-name" value="CM Vendor" ns="http://fedramp.gov/ns/oscal"/>
+      <prop name="asset-type" value="cryptographic-module" />
+      <prop name="software-name" value="OpenSSL" />
+      <prop name="software-version" value="3.0.8" />
+      <prop name="vendor-name" value="OpenSSL FIPS Provider" ns="http://fedramp.gov/ns/oscal"/>
       <prop name="function" value="data-in-transit" ns="http://fedramp.gov/ns/oscal">
         <remarks>
           <p>Usage statement</p>
         </remarks>
       </prop>
+      <link rel="validation" href="#11111111-2222-4000-8000-009001200001" >
+        <text>A link to the 3rd party validation information related to this cryptographic module.</text>
+      </link>
+      <link rel="provided-by" href="#" />
+      <status state="operational" />
+    </component>
+    <component type="software" uuid="11111111-2222-4000-8000-009000300011">
+      <title>OpenSSL</title>
+      <description>
+        <p>Provide a description and any pertinent note regarding the use of this CM.</p>
+        <p>For data-at-rest modules, describe type of encryption implemented (e.g., full disk, file,
+          record-level, etc.)</p>
+        <p>Lastly, provide any supporting notes on FIPS status (e.g. historical) or lack of FIPS
+          compliance (e.g., Module in Process).</p>
+      </description>
+      <prop name="asset-type" value="cryptographic-module" />
+      <prop name="software-name" value="OpenSSL" />
+      <prop name="software-version" value="3.0.9" />
+      <prop name="vendor-name" value="OpenSSL FIPS Provider" ns="http://fedramp.gov/ns/oscal"/>
+      <prop name="function" value="data-in-transit" ns="http://fedramp.gov/ns/oscal">
+        <remarks>
+          <p>Usage statement</p>
+        </remarks>
+      </prop>
+      <link rel="validation" href="#11111111-2222-4000-8000-009001200001" >
+        <text>A link to the 3rd party validation information related to this cryptographic module.</text>
+      </link>
+      <link rel="provided-by" href="#" >
+        <text>A link to the operating system component that has this module embedded.</text>
+      </link>
+      <link rel="used-by" href="#" >
+        <text>A link to the software component that uses this module for encrypted communication.</text>
+      </link>
+      <status state="operational" />
+    </component>
+    <component uuid="11111111-2222-4000-8000-009001200001" type="validation">
+      <title>OpenSSL FIPS 140-2 Validation</title>
+      <description>
+        <p>Describe any relevant information regarding this validation of the CM.</p>
+      </description>
+      <prop name="asset-type" value="cryptographic-module"/>
+      <prop name="validation-type" value="fips-140-2"/>
+      <prop name="validation-reference" value="4811"/>
       <link rel="proof-of-compliance"
-        href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/3928"/>
+        href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4811"/>
       <status state="operational"/>
       <remarks>
-        <p>If the same FIPS-validated cryptographic module is deployed in two or more different
-          components, each deployment SHOULD have its own "validation" component entry, such as if
-          the same module is embedded in a software product and an operating system.</p>
-        <p>The "asst-type" property is value is "cryptographic-module", and the class must be
-          present with one of the following values:</p>
-        <ul>
-          <li>"embeded": Embedded CM</li>
-          <li>"third-party": Third-party CM</li>
-          <li>"uses-os": Uses OS CM</li>
-          <li>"fips-mode": In FIPS Mode</li>
-          <li>"other": Other as described in the remarks</li>
-        </ul>
-        <p>Note that if the value is "other", additional detail must be provided in the property's
-          remarks field.</p>
+        <p>.</p>
       </remarks>
     </component>
+    <component uuid="11111111-2222-4000-8000-009001200001" type="validation">
+      <title>OpenSSL Some Other Validation</title>
+      <description>
+        <p>This is another validation of the OpenSSL Cryptographic module that has nothing to do with FIPS validation.</p>
+        <p>It may be present as a way of ensuring complete documentation, but may be ignored by FedRAMP automation.</p>
+      </description>
+      <prop name="validation-type" value="fips-140-2"/>
+      <prop name="validation-reference" value="4811"/>
+      <link rel="proof-of-compliance"
+        href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4811"/>
+      <status state="operational"/>
+      <remarks>
+        <p>.</p>
+      </remarks>
+    </component>
+
     <component uuid="11111111-2222-4000-8000-009001200002" type="validation">
       <title>Cryptographic Module Name</title>
       <description>
@@ -1833,15 +1915,9 @@
         <p>For example, any supporting notes on FIPS status (e.g. historical) or lack of FIPS
           compliance (e.g., Module in Process).</p>
       </description>
-      <prop name="asset-type" class="uses-os" value="cryptographic-module"/>
+      <prop name="asset-type" value="cryptographic-module"/>
       <prop name="validation-type" value="fips-140-3"/>
       <prop name="validation-reference" value="3920"/>
-      <prop name="vendor-name" value="CM Vendor" ns="http://fedramp.gov/ns/oscal"/>
-      <prop name="function" value="data-in-transit" ns="http://fedramp.gov/ns/oscal">
-        <remarks>
-          <p>Usage statement</p>
-        </remarks>
-      </prop>
       <link rel="proof-of-compliance"
         href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/3920"/>
       <status state="operational"/>
