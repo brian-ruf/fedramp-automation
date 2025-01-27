@@ -1735,18 +1735,48 @@
       <status state="operational"/>
     </component>
     
+    <component uuid="11111111-2222-4000-8000-009000500007" type="service">
+      <title>Corporate Data Lake</title>
+      <description>
+        <p>The corporate data lake. All logs are required to be sent here.</p>
+      </description>
+      <prop name="asset-type" value="logging" />
+      <prop name="diagram-label" value="Corporate Data Lake" ns="http://fedramp.gov/ns/oscal"/>
+      <link rel="receives" href="#11111111-2222-4000-8000-009001400002" />
+      <status state="operational"></status>
+    </component>
     
     <component uuid="11111111-2222-4000-8000-009001400001" type="connection">
-      <title>Encrypted Communication</title>
+      <title>Database Queries</title>
       <description>
-        <p>An encryptred communication between the web server and the database server for the
+        <p>An encryptred communication between the API server and the database server for the
           purpose of performing SQL queries.</p>
       </description>
       <prop name="asset-type" value="encrypted"/>
       <prop name="asset-id" value="ref-01"/>
       <prop name="connection-security" value="tls-1.3" ns="http://fedramp.gov/ns/oscal"/>
+      <prop name="diagram-label" value="Database Queries" ns="http://fedramp.gov/ns/oscal"/>
       <link rel="used-by" href="#11111111-2222-4000-8000-009000300100"/>
       <link rel="used-by" href="#11111111-2222-4000-8000-009000300200"/>
+      <status state="operational"/>
+      <remarks>
+        <p>Any about this connection to appear in Table Q.</p>
+      </remarks>
+    </component>
+
+    <component uuid="11111111-2222-4000-8000-009001400002" type="connection">
+      <title>Logging</title>
+      <description>
+        <p>An encryptred communication between components that generate logs and the corporate data lake for
+          the purpose of centralized logging.</p>
+      </description>
+      <prop name="asset-type" value="encrypted"/>
+      <prop name="asset-id" value="ref-02"/>
+      <prop name="connection-security" value="tls-1.3" ns="http://fedramp.gov/ns/oscal"/>
+      <prop name="diagram-label" value="Logging" ns="http://fedramp.gov/ns/oscal"/>
+      <link rel="used-by" href="#11111111-2222-4000-8000-009000300100"/>
+      <link rel="used-by" href="#11111111-2222-4000-8000-009000300200"/>
+      <link rel="used-by" href="#11111111-2222-4000-8000-009000500007"/>
       <status state="operational"/>
       <remarks>
         <p>Any notes about this connection to appear in Table Q.</p>
@@ -1765,6 +1795,7 @@
       <prop ns="http://fedramp.gov/ns/oscal" name="scan-type" value="database" />
       <prop ns="http://fedramp.gov/ns/oscal" name="vendor-name" value="Small Biz Software, LLC" />
       <link rel="used-by" href="#11111111-2222-4000-8000-009000500006"/>
+      <link rel="initiates" href="#11111111-2222-4000-8000-009001400002" />
       <status state="operational"/>
       <responsible-role role-id="administrator">
         <party-uuid>11111111-2222-4000-8000-004000000010</party-uuid>
@@ -1917,6 +1948,7 @@
       <prop name="scan-type" value="web" ns="http://fedramp.gov/ns/oscal"/>
       <link rel="validation" href="#11111111-2222-4000-8000-009001200002"/>
       <link rel="baseline" href="#11111111-2222-4000-8000-001000000059"/>
+      <link rel="initiates" href="#11111111-2222-4000-8000-009001400002" />
       <status state="operational"/>
     </component>
     <component uuid="11111111-2222-4000-8000-009000300300" type="software">
@@ -2052,13 +2084,28 @@
       <link rel="baseline" href="#11111111-2222-4000-8000-001000000059"/>
       <status state="operational"/>
     </component>
-    <component type="data" uuid="11111111-2222-4000-8000-009000000016">
+    <component type="network" uuid="11111111-2222-4000-8000-009000000015">
+      <title>VPC Routing</title>
+      <description>
+        <p>This is the routing capability within a VPC that provides access control between networks.</p>
+      </description>
+      <prop name="asset-type" value="routing" />
+      <prop name="public" value="no"/>
+      <prop name="diagram-label" value="VPC Routing" ns="http://fedramp.gov/ns/oscal" />
+      <link rel="used-by" href="#11111111-2222-4000-8000-009000000016" />
+      <link rel="used-by" href="#11111111-2222-4000-8000-009000000017" />
+      <link rel="used-by" href="#11111111-2222-4000-8000-009000000019" />
+      <status state="operational"/>
+    </component>
+    <component type="network" uuid="11111111-2222-4000-8000-009000000016">
       <title>Data Network</title>
       <description>
         <p>This network is dedicated to traffic to and from any databases or network attached storage.</p>
       </description>
+      <prop name="asset-type" value="subnet" />
       <prop name="public" value="no"/>
       <prop name="diagram-label" value="Data Network" ns="http://fedramp.gov/ns/oscal" />
+      <link rel="used-by" href="#11111111-2222-4000-8000-009000300100" />
       <status state="operational"/>
     </component>
     <component type="network" uuid="11111111-2222-4000-8000-009000000017">
@@ -2066,6 +2113,7 @@
       <description>
         <p>Production Network</p>
       </description>
+      <prop name="asset-type" value="subnet" />
       <prop name="public" value="no"/>
       <prop name="diagram-label" value="Production Network" ns="http://fedramp.gov/ns/oscal" />
       <status state="operational"/>
@@ -2075,15 +2123,29 @@
       <description>
         <p>Management Network.</p>
       </description>
+      <prop name="asset-type" value="subnet" />
       <prop name="public" value="no"/>
       <prop name="diagram-label" value="Management Network" ns="http://fedramp.gov/ns/oscal"/>
       <status state="operational"/>
     </component>
     <component type="network" uuid="11111111-2222-4000-8000-009000000019">
+      <title>Corporate Data Lake Network</title>
+      <description>
+        <p>-Facing DMZ Network.</p>
+      </description>
+      <prop name="asset-type" value="subnet" />
+      <prop name="public" value="no"/>
+      <prop name="diagram-label" value="Data Lake Network" ns="http://fedramp.gov/ns/oscal"/>
+      <link rel="used-by" href="#" />
+      <status state="operational"/>
+    </component>
+    <component type="network" uuid="11111111-2222-4000-8000-009000000020">
       <title>DMZ Network</title>
       <description>
         <p>Public-Facing DMZ Network.</p>
       </description>
+      <prop name="asset-type" value="subnet" />
+      <prop name="public" value="yes"/>
       <prop name="diagram-label" value="DMZ Network" ns="http://fedramp.gov/ns/oscal"/>
       <status state="operational"/>
     </component>
