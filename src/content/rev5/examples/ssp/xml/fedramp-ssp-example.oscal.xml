@@ -842,11 +842,12 @@
             "organization" representing the organization that owns the leveraged system.</p>
         </remarks>
       </responsible-role>
-      <responsible-role role-id="administrator">
+      <responsible-role role-id="asset-administrator">
         <prop name="privilege-uuid" value="11111111-2222-4000-8000-008000000004"
           ns="http://fedramp.gov/ns/oscal"/>
         <prop name="privilege-uuid" value="11111111-2222-4000-8000-008000000005"
           ns="http://fedramp.gov/ns/oscal"/>
+        <party-uuid>11111111-2222-4000-8000-c0040000000a</party-uuid>
       </responsible-role>
       <remarks>
         <p>This is a leveraged system within which this system operates. It is explicitly listed on
@@ -980,6 +981,7 @@
         <p>- Nature of Agreement, CSP Name</p>
       </remarks>
     </component>
+    
     <component uuid="11111111-2222-4000-8000-009000500002" type="service">
       <title>Service B</title>
       <description>
@@ -1029,7 +1031,7 @@
           <li>One or more "information-type" property/extensions, where the allowed values are the
             800-63 information type identifiers, and the cited types are included full list of
             system information types.</li>
-          <li>exactly one "poam-item" link, with an href value that references the POA&amp;M and a
+          <li>at least one "poam-item" link, with an href value that references the POA&amp;M and a
             resource-fragment that represents the POAM&amp;M ID (legacy/Excel POA&amp;M) or
             poam-item UUID (OSCAL POA&amp;M)</li>
           <li>a "provided-by" link with a URI fragment that points to the "system" component
@@ -1050,28 +1052,11 @@
         </ul>
         <p>Link(s) to the vendor's web site describing the service are encouraged, but not
           required.</p>
-        <p>The following fields from the Leveraged Authorization Table are handled in the
-          leveraged-authorization assembly:</p>
-        <ul>
-          <li>Package ID, Authorization Type, Impact Level</li>
-        </ul>
-        <p/>
-        <p>- An "inherited-uuid" property if the leveraged system's owner provides a UUID for their
-          system (such as in an OSCAL-based CRM).</p>
-        <p>Link(s) to the vendor's web site describing the service are encouraged, but not
-          required.</p>
-        <p/>
-        <p>The following fields from the Leveraged Authorization Table are handled in the
-          leveraged-authorization assembly:</p>
-        <p>- Package ID, Authorization Type, Impact Level</p>
         <p/>
         <p>The following fields from the Leveraged Authorization Table are handled in the "system"
           component assembly:</p>
         <p>- Nature of Agreement, CSP Name</p>
         <p/>
-        <p>An unauthorized service from an underlying leveraged authorization must NOT have the
-          "leveraged-authorization-uuid" property. The presence or absence of this property is how
-          the authorization status of a service is indicated.</p>
       </remarks>
     </component>
     <component uuid="11111111-2222-4000-8000-009000100002" type="system">
@@ -2067,7 +2052,16 @@
       <link rel="baseline" href="#11111111-2222-4000-8000-001000000059"/>
       <status state="operational"/>
     </component>
-    <component type="network" uuid="11111111-2222-4000-8000-009000000016">
+    <component type="data" uuid="11111111-2222-4000-8000-009000000016">
+      <title>Data Network</title>
+      <description>
+        <p>This network is dedicated to traffic to and from any databases or network attached storage.</p>
+      </description>
+      <prop name="public" value="no"/>
+      <prop name="diagram-label" value="Data Network" ns="http://fedramp.gov/ns/oscal" />
+      <status state="operational"/>
+    </component>
+    <component type="network" uuid="11111111-2222-4000-8000-009000000017">
       <title>Production Subnet</title>
       <description>
         <p>Production Network</p>
@@ -2076,7 +2070,7 @@
       <prop name="diagram-label" value="Production Network" ns="http://fedramp.gov/ns/oscal" />
       <status state="operational"/>
     </component>
-    <component type="network" uuid="11111111-2222-4000-8000-009000000017">
+    <component type="network" uuid="11111111-2222-4000-8000-009000000018">
       <title>Management Network</title>
       <description>
         <p>Management Network.</p>
@@ -2085,7 +2079,7 @@
       <prop name="diagram-label" value="Management Network" ns="http://fedramp.gov/ns/oscal"/>
       <status state="operational"/>
     </component>
-    <component type="network" uuid="11111111-2222-4000-8000-009000000018">
+    <component type="network" uuid="11111111-2222-4000-8000-009000000019">
       <title>DMZ Network</title>
       <description>
         <p>Public-Facing DMZ Network.</p>
@@ -2357,12 +2351,12 @@
     </inventory-item>
     
 
-    <inventory-item uuid="11111111-2222-4000-8000-011000000016">
-      <description><p>Instance of a Production Network</p></description>
+    <inventory-item uuid="11111111-2222-4000-8000-011000000021">
+      <description><p>Instance of the Data Network</p></description>
       <prop name="vlan-id" value="vlan-ID-16"/>
-      <prop name="ipv4-address" class="network" value="10.10.10.0"/>
-      <prop name="ipv4-address" class="subnet" value="255.255.255.0"/>
-      <prop name="ipv4-address" class="gateway" value="10.10.10.1"/>
+      <prop name="ipv4-address" class="network" value="10.10.20.0"/>
+      <prop name="ipv4-address" class="subnet-mask" value="255.255.255.0"/>
+      <prop name="ipv4-address" class="gateway" value="10.10.20.1"/>
       <prop name="ipv6-address" value="0000:0000:0000:0000:0000:ffff:0a08:0808"/>
       <prop name="virtual" value="yes"/>
       <prop name="is-scanned" value="yes"/>
@@ -2370,12 +2364,12 @@
       <implemented-component component-uuid="11111111-2222-4000-8000-009000000016" />
     </inventory-item>
 
-    <inventory-item uuid="11111111-2222-4000-8000-011000000017">
-      <description><p>Instance of a Production Network</p></description>
+    <inventory-item uuid="11111111-2222-4000-8000-011000000022">
+      <description><p>Instance of the Data Network</p></description>
       <prop name="vlan-id" value="vlan-ID-17"/>
-      <prop name="ipv4-address" class="network" value="20.20.20.0"/>
-      <prop name="ipv4-address" class="subnet" value="255.255.255.0"/>
-      <prop name="ipv4-address" class="gateway" value="20.20.20.1"/>
+      <prop name="ipv4-address" class="network" value="10.20.20.0"/>
+      <prop name="ipv4-address" class="subnet-mask" value="255.255.255.0"/>
+      <prop name="ipv4-address" class="gateway" value="10.20.20.1"/>
       <prop name="ipv6-address" value="0000:0000:0000:0000:0000:ffff:0a08:0808"/>
       <prop name="virtual" value="yes"/>
       <prop name="is-scanned" value="yes"/>
@@ -2387,7 +2381,7 @@
       <description><p>Instance of a Production Network</p></description>
       <prop name="vlan-id" value="vlan-ID-18"/>
       <prop name="ipv4-address" class="network" value="30.30.30.0"/>
-      <prop name="ipv4-address" class="subnet" value="255.255.255.0"/>
+      <prop name="ipv4-address" class="subnet-mask" value="255.255.255.0"/>
       <prop name="ipv4-address" class="gateway" value="30.30.30.1"/>
       <prop name="ipv6-address" value="0000:0000:0000:0000:0000:ffff:0a08:0808"/>
       <prop name="virtual" value="yes"/>
