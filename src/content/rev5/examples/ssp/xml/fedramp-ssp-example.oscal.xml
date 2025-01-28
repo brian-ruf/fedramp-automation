@@ -1760,7 +1760,7 @@
       <link rel="used-by" href="#11111111-2222-4000-8000-009000300200"/>
       <status state="operational"/>
       <remarks>
-        <p>Any about this connection to appear in Table Q.</p>
+        <p>Provide any notes here about this connection that you wish to appear in Table Q.</p>
       </remarks>
     </component>
 
@@ -1779,7 +1779,7 @@
       <link rel="used-by" href="#11111111-2222-4000-8000-009000500007"/>
       <status state="operational"/>
       <remarks>
-        <p>Any notes about this connection to appear in Table Q.</p>
+        <p>Provide any notes here about this connection that you wish to appear in Table Q.</p>
       </remarks>
     </component>
     <component uuid="11111111-2222-4000-8000-009000300100" type="software">
@@ -1795,6 +1795,7 @@
       <prop ns="http://fedramp.gov/ns/oscal" name="scan-type" value="database" />
       <prop ns="http://fedramp.gov/ns/oscal" name="vendor-name" value="Small Biz Software, LLC" />
       <link rel="used-by" href="#11111111-2222-4000-8000-009000500006"/>
+      <link rel="receives" href="#11111111-2222-4000-8000-009001400001" />
       <link rel="initiates" href="#11111111-2222-4000-8000-009001400002" />
       <status state="operational"/>
       <responsible-role role-id="administrator">
@@ -1939,15 +1940,16 @@
       <status state="operational"/>
     </component>
     <component uuid="11111111-2222-4000-8000-009000300200" type="software">
-      <title>Web Server</title>
+      <title>API Server</title>
       <description>
-        <p>This is a web server that communicates with a database via an encrypted connection</p>
+        <p>This is an API server that communicates with a database via an encrypted connection</p>
       </description>
-      <prop name="asset-type" value="web-server"/>
+      <prop name="asset-type" value="api-server"/>
       <prop name="allows-authenticated-scan" value="no"/>
       <prop name="scan-type" value="web" ns="http://fedramp.gov/ns/oscal"/>
       <link rel="validation" href="#11111111-2222-4000-8000-009001200002"/>
       <link rel="baseline" href="#11111111-2222-4000-8000-001000000059"/>
+      <link rel="initiates" href="#11111111-2222-4000-8000-009001400001" />
       <link rel="initiates" href="#11111111-2222-4000-8000-009001400002" />
       <status state="operational"/>
     </component>
@@ -2090,7 +2092,6 @@
         <p>This is the routing capability within a VPC that provides access control between networks.</p>
       </description>
       <prop name="asset-type" value="routing" />
-      <prop name="public" value="no"/>
       <prop name="diagram-label" value="VPC Routing" ns="http://fedramp.gov/ns/oscal" />
       <link rel="used-by" href="#11111111-2222-4000-8000-009000000016" />
       <link rel="used-by" href="#11111111-2222-4000-8000-009000000017" />
